@@ -1,5 +1,6 @@
+var animals = ["cats", "dogs", "birds", "rabbit"];
+
 $(document).ready(function(){
-    var animals = ["cats", "dogs","birds", "rabbit"]
     function generateButtons(){
         for(var i=0; i<animals.length;i++){
             var button = $("<button>"); //<button></button>
@@ -10,7 +11,34 @@ $(document).ready(function(){
 
         }
     }
+
+    function clearBTNs () {
+        $("#butons-container").empty();
+    }
+    
+    $("#clear-animalBTN").on("click", function(){
+         
+        clearBTNs ();
+        
+    } );
+
+    $("#add-animalBTN").on("click", function(event){
+        
+        event.preventDefault();
+        
+        var newAnimal = $('input').eq(0).val();
+        
+        if (newAnimal.length > 2) {
+            animals.push(newAnimal);
+            console.log("new animal " + newAnimal + " was added.")
+        }
+
+        generateButtons();
+        
+    } );
+
     generateButtons();
+
     $(document).on("click", ".top-button", function(){
         console.log("top button on click")
         var name = $(this).attr("data-type");
@@ -31,9 +59,9 @@ $(document).ready(function(){
                animalImage.attr("src", animatedGifUrl);
                animalImage.attr("data-state", "animated")
                animalImage.addClass("animal-image");
-                animalDiv.append(p)
-                animalDiv.append(animalImage)
-                $("#animal-container").append(animalDiv)
+                animalDiv.prepend(p)
+                animalDiv.prepend(animalImage)
+                $("#animal-container").prepend(animalDiv)
 
 
                 
