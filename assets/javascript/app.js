@@ -13,12 +13,18 @@ $(document).ready(function(){
     }
 
     function clearBTNs () {
-        $("#butons-container").empty();
+        $("#buttons-container").empty();
+    }
+
+    function clearGiphs (){
+        $("#animal-container").empty();
     }
     
-    $("#clear-animalBTN").on("click", function(){
-         
-        clearBTNs ();
+    $("#clear-animalGiphs").on("click", function(event){
+
+        event.preventDefault();
+
+        clearGiphs ();
         
     } );
 
@@ -33,6 +39,8 @@ $(document).ready(function(){
             console.log("new animal " + newAnimal + " was added.")
         }
 
+        clearBTNs ();
+
         generateButtons();
         
     } );
@@ -43,9 +51,9 @@ $(document).ready(function(){
         console.log("top button on click")
         var name = $(this).attr("data-type");
         console.log("button " +name +" is clicked")
-        var queryURL = "http://api.giphy.com/v1/gifs/search?q=" +name +"&api_key=mqxv51pLW3cWYuB4EfW8TRjoilATKddB";
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +name +"&api_key=mqxv51pLW3cWYuB4EfW8TRjoilATKddB";
         $.ajax({
-            url: "http://api.giphy.com/v1/gifs/search?q=" +name +"&api_key=mqxv51pLW3cWYuB4EfW8TRjoilATKddB",
+            url: "https://api.giphy.com/v1/gifs/search?q=" +name +"&api_key=mqxv51pLW3cWYuB4EfW8TRjoilATKddB",
             method: "GET"
         }).then(function(res){
             console.log(res);
